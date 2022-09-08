@@ -1,4 +1,5 @@
-﻿using Estudiante_Data.Models;
+﻿
+using Estudiante_Data.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

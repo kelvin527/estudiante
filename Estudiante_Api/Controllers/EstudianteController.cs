@@ -65,9 +65,11 @@ namespace Estudiante_Api.Controllers
                 var result = new Resultado()
                 {
                     Success = true,
-                    StatusCode = HttpStatusCode.OK,
+                    StatusCode = HttpStatusCode.Created,
                     Message = "Registro guardado  con éxito."
                 };
+
+                return Ok(result);
             }
             catch (DbUpdateException ex)
             {
@@ -78,8 +80,7 @@ namespace Estudiante_Api.Controllers
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
 
-            return Ok();
-
+            return BadRequest();
         }
 
         [HttpPut("{id}")]
@@ -90,13 +91,21 @@ namespace Estudiante_Api.Controllers
             {
                 if (modelDto == null || id == 0)
                     return BadRequest(new Resultado() { StatusCode = HttpStatusCode.BadRequest });
+               
                 var model = _mapper.Map<Estudiantes>(modelDto);
 
                 _context.Entry(model).State = EntityState.Modified;
 
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                var result = new Resultado()
+                {
+                    Success = true,
+                    StatusCode = HttpStatusCode.OK,
+                    Message = "Registro actualizado  con éxito."
+                };
+
+                return Ok(result);
             }
             catch (DbUpdateException ex)
             {
@@ -106,16 +115,10 @@ namespace Estudiante_Api.Controllers
             {
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
-            var result = new Resultado()
-            {
-                Success = true,
-                StatusCode = HttpStatusCode.OK,
-                Message = "Registro actualizado  con éxito."
-            };
 
-            return Ok(result);
+            return BadRequest();
 
-            }
+        }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Resultado>> Delete(int id)

@@ -65,7 +65,7 @@ namespace Estudiante_Api.Controllers
                 var result = new Resultado()
                 {
                     Success = true,
-                    StatusCode = HttpStatusCode.OK,
+                    StatusCode = HttpStatusCode.Created,
                     Message = "Registro guardado  con éxito."
                 };
             }
@@ -78,7 +78,7 @@ namespace Estudiante_Api.Controllers
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
 
-            return Ok();
+            return BadRequest();
 
         }
 
@@ -114,6 +114,8 @@ namespace Estudiante_Api.Controllers
             };
 
             return Ok(result);
+
+            return BadRequest();
 
         }
 
