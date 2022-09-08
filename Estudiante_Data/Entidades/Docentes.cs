@@ -6,18 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estudiante_Data.Models
+namespace Estudiante_Data.Entidades
 {
-    public class Periodos
+    public class Docentes : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string Descripcion { get; set; }
-        public string Estatus { get; set; }
+        [Required]
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Codigo { get; set; }
+        public string Sexo { get; set; }
+        public int Telefono { get; set; }
+        public string Correo { get; set; }
+        public string Direccion { get; set; }
+        public string Estatu { get; set; }
         public string UsuarioRegistro { get; set; }
-        public string FechaRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
         public string UsuarioModificacion { get; set; }
         public string FechaModificacion { get; set; }
     }
+    
 }

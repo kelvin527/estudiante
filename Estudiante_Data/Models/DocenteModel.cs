@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Estudiante_Data.Models
 {
-    public class DocenteModel
+    public class Docentes
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

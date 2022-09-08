@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Estudiante_Business.Mapper
 {
-    internal class EstudianteMappers : Profile
+    public class EstudianteMappers : Profile
     {
         public EstudianteMappers()
         {

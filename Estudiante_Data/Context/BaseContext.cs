@@ -8,22 +8,27 @@ using System.Threading.Tasks;
 
 namespace Estudiante_Data.Context
 {
-    internal class BaseContext : DbContext
+    public class BaseContext : DbContext
     {
+      
         public BaseContext(DbContextOptions options) : base(options)
         {
         }
+        public  virtual DbSet<Calificaciones>  Calificaciones { get; set; }
 
-             public DbSet<CalificacionesModel> calificaciones { get; set; }
+         public virtual DbSet<Docentes> Docentes { get; set; }
 
-             public DbSet<DocenteModel> docentes { get; set; }
+         public virtual DbSet<Estudiantes> Estudiantes { get; set; }
 
-             public DbSet<EstudianteModel> estudiantes { get; set; }
+         public virtual DbSet<Grados> Grados { get; set; }
 
-             public DbSet<GradoModel> grados { get; set; }
+         public virtual DbSet<Materias> Materias { get; set; }
 
-             public DbSet<MateriaModel> materias { get; set; }
+         public virtual DbSet<Periodos> Periodos { get; set; }
 
-             public DbSet<PeriodoModel> periodos { get; set; }
+        public Task FindAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

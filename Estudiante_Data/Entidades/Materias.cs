@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Estudiante_Data.Models
+namespace Estudiante_Data.Entidades
 {
-    public class Materias
+    public class Materias : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
