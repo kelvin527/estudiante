@@ -1,10 +1,15 @@
 using AutoMapper;
+using Estudiante_Business.Interface;
+using Estudiante_Business.Services;
 using Estudiante_Data.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+
 
 builder.Services.AddControllers();
 
@@ -16,6 +21,13 @@ builder.Services.AddDbContext<BaseContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
 
 /// Configure mmaper
+/// 
+builder.Services.AddTransient<IEstudianteService, EstudianteService>();
+builder.Services.AddTransient<ICalificacionesService, CalificacionesServices>();
+builder.Services.AddTransient<IMateriaService, MateriaServices>();
+builder.Services.AddTransient<IPeriodoService, PeriodoServices>();
+builder.Services.AddTransient<IDocenteService, DoceneteServices>();
+builder.Services.AddTransient<IGradoService, GradoServices>();
 
 var config = new MapperConfiguration(cf => {
   var asamble = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == "Estudiante_Business");

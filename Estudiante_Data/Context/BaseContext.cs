@@ -14,21 +14,17 @@ namespace Estudiante_Data.Context
         public BaseContext(DbContextOptions options) : base(options)
         {
         }
-        public  virtual DbSet<Calificaciones>  Calificaciones { get; set; }
+        public   DbSet<Calificaciones>  Calificaciones { get; set; }
 
-         public virtual DbSet<Docentes> Docentes { get; set; }
+         public  DbSet<Docentes> Docentes { get; set; }
 
-         public virtual DbSet<Estudiantes> Estudiantes { get; set; }
+         public  DbSet<Estudiantes> Estudiantes { get; set; }
 
-         public virtual DbSet<Grados> Grados { get; set; }
+         public  DbSet<Grados> Grados { get; set; }
 
-         public virtual DbSet<Materias> Materias { get; set; }
+         public  DbSet<Materias> Materias { get; set; }
 
-         public virtual DbSet<Periodos> Periodos { get; set; }
-
-        public Task FindAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
+         public  DbSet<Periodos> Periodos { get; set; }
+       
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Estudiante_Business.Interface
 {
-    public interface ICalificaciones : IBaseRepository<Calificaciones>
+    public interface ICalificacionesService : IBaseRepository<Calificaciones>
     {
     
     }

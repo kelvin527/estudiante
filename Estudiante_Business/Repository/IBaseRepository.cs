@@ -26,7 +26,6 @@ namespace Estudiante_Business.Repository
         IQueryable<TModel> GetQueryable(Expression<Func<TModel, bool>> predicate);
         IQueryable<TModel> GetQueryable();
         Task<bool> DeleteByIdAsync(int id);
-      
         void DeleteByEntity(TModel entity);
         void RemoveRange(IEnumerable<TModel> entities);
         bool Commit();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Estudiante_Business.Interface
 {
-    public interface IDocente : IBaseRepository<Docentes>
+    public interface IDocenteService : IBaseRepository<Docentes>
     {
     }
 }
