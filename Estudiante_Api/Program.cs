@@ -26,14 +26,22 @@ builder.Services.AddTransient<IPeriodoService, PeriodoServices>();
 builder.Services.AddTransient<IDocenteService, DoceneteServices>();
 builder.Services.AddTransient<IGradoService, GradoServices>();
 
-var config = new MapperConfiguration(cf => {
-  var asamble = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == "Estudiante_Business");
-    cf.AddMaps(asamble);
-    cf.AllowNullCollections = true;
-});
+var mapperconfig = new MapperConfiguration(m =>
+{
 
-var mapper = config.CreateMapper();
+});
+IMapper mapper = mapperconfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(typeof(Program));
+
+//var config = new MapperConfiguration(cf => {
+//  var asamble = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.GetName().Name == "Estudiante_Business");
+//    cf.AddMaps(asamble);
+//    cf.AllowNullCollections = true;
+//});
+
+//var mapper = config.CreateMapper();
+//builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 

@@ -21,7 +21,7 @@ namespace Estudiante_Api.Controllers
         {
             _service = service;
         }
-
+        [HttpGet]
         public  async Task<IActionResult> Get()
         {
             var result = await _service.GetAllAsync();
