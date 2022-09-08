@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Estudiante_Business.Interface;
 using Estudiante_Business.Repository;
+using Estudiante_Data.Context;
 using Estudiante_Data.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,7 +14,7 @@ namespace Estudiante_Business.Services
 {
     public class GradoServices : BaseRepository<Grados>, IGradoService
     {
-        public GradoServices(DbContext context, IMapper mapper) : base(context, mapper)
+        public GradoServices(BaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
     }

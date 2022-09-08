@@ -12,7 +12,7 @@ namespace Estudiante_Business.Dtos
         public string UsuarioRegistra { get; set; }
         public DateTime FechaRegistra { get; set; }
         public string UsuarioModificacion { get; set; }
-        public DateTime FechaModificacion { get; set; }
+        public DateTime? FechaModificacion { get; set; }
         public bool Estatus { get; set; }
  
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Estudiante_Business.Interface;
 using Estudiante_Business.Repository;
+using Estudiante_Data.Context;
 using Estudiante_Data.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,7 +14,7 @@ namespace Estudiante_Business.Services
 {
     public class PeriodoServices : BaseRepository<Periodos>, IPeriodoService
     {
-        public PeriodoServices(DbContext context, IMapper mapper) : base(context, mapper)
+        public PeriodoServices(BaseContext context, IMapper mapper) : base(context, mapper)
         {
         }
     }

@@ -22,7 +22,8 @@ namespace Estudiante_Api.Controllers
             _service = service;
         }
 
-        public  async Task<IActionResult> Get()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             var result = await _service.GetAllAsync();
 
@@ -36,7 +37,7 @@ namespace Estudiante_Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public  async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             var result = await _service.GetByIdAsync(id);
             if (result != null)
@@ -77,11 +78,9 @@ namespace Estudiante_Api.Controllers
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
 
-
             return Ok();
 
         }
-
 
         [HttpPut("{id}")]
         public virtual async Task<IActionResult> Put(int id, [FromBody] EstudianteDto modelDto)
@@ -116,7 +115,7 @@ namespace Estudiante_Api.Controllers
 
             return Ok(result);
 
-        }
+            }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<Resultado>> Delete(int id)
@@ -145,7 +144,7 @@ namespace Estudiante_Api.Controllers
             };
 
             return Ok(result);
-          
+
         }
     }
 

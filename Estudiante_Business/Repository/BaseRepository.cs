@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Estudiante_Data.Context;
 using Estudiante_Data.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -16,9 +17,9 @@ namespace Estudiante_Business.Repository
     public class BaseRepository<TModel> : IBaseRepository <TModel> where TModel: class , IBaseEntity, new()
     {
         private readonly DbSet<TModel> _dbSet;
-        private readonly DbContext _context;
+        private readonly BaseContext _context;
         private readonly IMapper _mapper;
-        public BaseRepository(DbContext context,  IMapper mapper)
+        public BaseRepository(BaseContext context,  IMapper mapper)
         {
             _context = context;
             _dbSet = context.Set<TModel>();

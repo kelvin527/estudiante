@@ -9,5 +9,7 @@ namespace Estudiante_Business.Dtos
 {
     public class PeriodoDto : BaseDto
     {
+
+        public string Descripcion { get; set; }
     }
 }
