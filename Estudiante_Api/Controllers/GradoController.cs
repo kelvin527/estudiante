@@ -14,11 +14,10 @@ namespace Estudiante_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DocenteController : BaseController
+    public class GradoController : BaseController
     {
-        public readonly IDocenteService _service;
-
-        public DocenteController(IDocenteService service, BaseContext context, IMapper mapper) : base(context, mapper)
+        public readonly IGradoService _service;
+        public GradoController(IGradoService service, BaseContext context, IMapper mapper) : base(context, mapper)
         {
             _service = service;
         }
@@ -30,7 +29,7 @@ namespace Estudiante_Api.Controllers
 
             if (result != null)
             {
-                var model = _mapper.Map<DocenteDto>(result);
+                var model = _mapper.Map<GradoDto>(result);
                 return Ok(model);
             }
 
@@ -43,21 +42,21 @@ namespace Estudiante_Api.Controllers
             var result = await _service.GetByIdAsync(id);
             if (result != null)
             {
-                var model = _mapper.Map<DocenteDto>(result);
+                var model = _mapper.Map<GradoDto>(result);
                 return Ok(model);
             }
 
             return NoContent();
         }
         [HttpPost]
-        public async Task<ActionResult> Post(DocenteDto modelDto)
+        public async Task<ActionResult> Post(GradoDto modelDto)
         {
             try
             {
                 if (modelDto == null)
                     return BadRequest();
 
-                var model = _mapper.Map<DocenteDto>(modelDto);
+                var model = _mapper.Map<GradoDto>(modelDto);
 
                 _context.Add(model);
 
@@ -84,14 +83,14 @@ namespace Estudiante_Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public virtual async Task<IActionResult> Put(int id, [FromBody] DocenteDto modelDto)
+        public virtual async Task<IActionResult> Put(int id, [FromBody] GradoDto modelDto)
         {
 
             try
             {
                 if (modelDto == null || id == 0)
                     return BadRequest(new Resultado() { StatusCode = HttpStatusCode.BadRequest });
-                var model = _mapper.Map<DocenteDto>(modelDto);
+                var model = _mapper.Map<GradoDto>(modelDto);
 
                 _context.Entry(model).State = EntityState.Modified;
 
