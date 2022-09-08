@@ -31,10 +31,10 @@ namespace Estudiante_Business.Repository
         void RemoveRange(IEnumerable<TModel> entities);
         bool Commit();
         Task<bool> CommitAsync();
-        IEnumerable<OperationResult> AddRange(IEnumerable<TModel> entityEnumerable);
+        IEnumerable<Resultado> AddRange(IEnumerable<TModel> entityEnumerable);
         Task<TModel> Find(int id, params Expression<Func<TModel, object>>[] includeProperties);
         IQueryable<TModel> FindBy(Expression<Func<TModel, bool>> predicate, params Expression<Func<TModel, object>>[] includeProperties);
-        OperationResult Activar(TModel entity);
+        Resultado Activar(TModel entity);
         Task<decimal?> SumAsync(Expression<Func<TModel, bool>> predicate = null);
         Task<int> CountAsync(Expression<Func<TModel, bool>> predicate = null);
         Task<TModel> FirstAsync(Expression<Func<TModel, bool>> predicate, Func<IQueryable<TModel>, IOrderedQueryable<TModel>> orderBy = null, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null);
@@ -42,6 +42,6 @@ namespace Estudiante_Business.Repository
         Task<TModel> SingleAsync(Expression<Func<TModel, bool>> predicate, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null);
         Task<TModel> SingleOrDefaultAsync(Expression<Func<TModel, bool>> predicate, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null);
         bool Any(Expression<Func<TModel, bool>> predicate);
-        Task<OperationResult> SaveAsync();
+        Task<Resultado> SaveAsync();
     }
 }

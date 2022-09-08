@@ -83,11 +83,11 @@ namespace Estudiante_Business.Repository
             _dbSet.RemoveRange(entities);
         }
     
-        public virtual IEnumerable<OperationResult> AddRange(IEnumerable<TModel> entityEnumerable)
+        public virtual IEnumerable<Resultado> AddRange(IEnumerable<TModel> entityEnumerable)
         {
            
             _dbSet.AddRange(entityEnumerable);
-            yield return new OperationResult() { StatusCode = HttpStatusCode.Created, Success = true };
+            yield return new Resultado() { StatusCode = HttpStatusCode.Created, Success = true };
         }
         public virtual async Task<TModel> Find(int id, params Expression<Func<TModel, object>>[] includeProperties)
         {
@@ -107,12 +107,12 @@ namespace Estudiante_Business.Repository
             }
             return query.AsNoTracking();
         }
-        public virtual OperationResult Activar(TModel entity)
+        public virtual Resultado Activar(TModel entity)
         {
             EntityEntry dbEntityEntry = _context.Entry(entity);
             entity.Estatus = true;
             dbEntityEntry.State = EntityState.Modified;
-            return new OperationResult() { StatusCode = HttpStatusCode.OK, Success = true };
+            return new Resultado() { StatusCode = HttpStatusCode.OK, Success = true };
         }
         public virtual async Task<DataCollection<TModel>> GetPagedAsync(
         int page,
@@ -265,16 +265,16 @@ namespace Estudiante_Business.Repository
                 return false;
             }
         }
-        public  async Task<OperationResult> SaveAsync()
+        public  async Task<Resultado> SaveAsync()
         {
             try
             {
                 await _context.SaveChangesAsync();
-                return new OperationResult() { Success = true, StatusCode = HttpStatusCode.Created };
+                return new Resultado() { Success = true, StatusCode = HttpStatusCode.Created };
             }
             catch (DbUpdateException ex)
             {
-                return new OperationResult() { Message = ex.Message, StatusCode = HttpStatusCode.InternalServerError };
+                return new Resultado() { Message = ex.Message, StatusCode = HttpStatusCode.InternalServerError };
             }
         }
 

@@ -61,7 +61,12 @@ namespace Estudiante_Api.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                var result = new Resultado()
+                {
+                    Success = true,
+                    StatusCode = HttpStatusCode.OK,
+                    Message = "Registro guardado  con éxito."
+                };
             }
             catch (DbUpdateException ex)
             {
@@ -71,15 +76,9 @@ namespace Estudiante_Api.Controllers
             {
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
-            var result = new OperationResult()
-            {
-                Success = true,
-                StatusCode = HttpStatusCode.OK,
-                Message = "Registro guardado  con éxito."
-            };
 
-            return Ok(result);
 
+            return Ok();
 
         }
 
@@ -91,7 +90,7 @@ namespace Estudiante_Api.Controllers
             try
             {
                 if (modelDto == null || id == 0)
-                    return BadRequest(new OperationResult() { StatusCode = HttpStatusCode.BadRequest });
+                    return BadRequest(new Resultado() { StatusCode = HttpStatusCode.BadRequest });
                 var model = _mapper.Map<Estudiantes>(modelDto);
 
                 _context.Entry(model).State = EntityState.Modified;
@@ -108,7 +107,7 @@ namespace Estudiante_Api.Controllers
             {
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
-            var result = new OperationResult()
+            var result = new Resultado()
             {
                 Success = true,
                 StatusCode = HttpStatusCode.OK,
@@ -120,7 +119,7 @@ namespace Estudiante_Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<OperationResult>> Delete(int id)
+        public async Task<ActionResult<Resultado>> Delete(int id)
         {
             var model = await _service.GetByIdAsync(id);
             if (model == null)
@@ -138,7 +137,7 @@ namespace Estudiante_Api.Controllers
             {
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
-            var result = new OperationResult()
+            var result = new Resultado()
             {
                 Success = true,
                 StatusCode = HttpStatusCode.OK,
