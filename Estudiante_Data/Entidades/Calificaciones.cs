@@ -10,16 +10,17 @@ namespace Estudiante_Data.Entidades
 {
     public class Calificaciones: BaseEntity
     {
-        public Estudiantes EstudianteId { get; set; }
-        public Materias MateriaId { get; set; }
-        public Docentes DocenteId { get; set; }
-        public Grados GradoId { get; set; }
-        public Periodos PeriodoId { get; set; }
+        public int EstudianteId { get; set; }
+        public int MateriaId { get; set; }
+        public int DocenteId { get; set; }
+        public int GradoId { get; set; }
+        public int PeriodoId { get; set; }
         public int Nota { get; set; }
-        public string Estatus { get; set; }
-        public string UsuarioRegistro { get; set; }
-        public DateTime FechaRegistro { get; set; }
-        public string UsuarioModificacion { get; set; }
-        public string FechaModificacion { get; set; }
+        public Estudiantes Estudiante { get; set; }
+        public Materias Materia { get; set; }
+        public Docentes Docente { get; set; }
+        public Grados Grado { get; set; }
+        public Periodos Periodo { get; set; }
+
     }
 }
