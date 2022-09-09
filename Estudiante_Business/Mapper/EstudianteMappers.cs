@@ -14,6 +14,7 @@ namespace Estudiante_Business.Mapper
         public EstudianteMappers()
         {
             CreateMap<Estudiantes, EstudianteDto>().ReverseMap();
+            CreateMap<Estudiantes, EstudianteDto>().ReverseMap();
             CreateMap<Docentes, DocenteDto>().ReverseMap();
             CreateMap<Grados, GradoDto>().ReverseMap();
             CreateMap<Materias, MateriaDto>().ReverseMap();

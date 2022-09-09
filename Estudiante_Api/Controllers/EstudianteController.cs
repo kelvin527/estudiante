@@ -29,7 +29,7 @@ namespace Estudiante_Api.Controllers
 
             if (result != null)
             {
-                var model = _mapper.Map<EstudianteDto>(result);
+                var model = _mapper.Map<List<EstudianteDto>>(result);
                 return Ok(model);
             }
 
@@ -57,7 +57,7 @@ namespace Estudiante_Api.Controllers
                     return BadRequest();
 
                 var model = _mapper.Map<Estudiantes>(modelDto);
-
+                
                 _context.Add(model);
 
                 await _context.SaveChangesAsync();

@@ -30,7 +30,7 @@ namespace Estudiante_Api.Controllers
 
             if (result != null)
             {
-                var model = _mapper.Map<DocenteDto>(result);
+                var model = _mapper.Map<List<DocenteDto>>(result);
                 return Ok(model);
             }
 
@@ -57,7 +57,7 @@ namespace Estudiante_Api.Controllers
                 if (modelDto == null)
                     return BadRequest();
 
-                var model = _mapper.Map<DocenteDto>(modelDto);
+                var model = _mapper.Map<Docentes>(modelDto);
 
                 _context.Add(model);
 
@@ -91,7 +91,7 @@ namespace Estudiante_Api.Controllers
             {
                 if (modelDto == null || id == 0)
                     return BadRequest(new Resultado() { StatusCode = HttpStatusCode.BadRequest });
-                var model = _mapper.Map<DocenteDto>(modelDto);
+                var model = _mapper.Map<Docentes>(modelDto);
 
                 _context.Entry(model).State = EntityState.Modified;
 

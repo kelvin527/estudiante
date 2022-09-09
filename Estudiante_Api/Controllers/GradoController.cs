@@ -29,7 +29,7 @@ namespace Estudiante_Api.Controllers
 
             if (result != null)
             {
-                var model = _mapper.Map<GradoDto>(result);
+                var model = _mapper.Map<List<GradoDto>>(result);
                 return Ok(model);
             }
 
@@ -56,7 +56,7 @@ namespace Estudiante_Api.Controllers
                 if (modelDto == null)
                     return BadRequest();
 
-                var model = _mapper.Map<GradoDto>(modelDto);
+                var model = _mapper.Map<Grados>(modelDto);
 
                 _context.Add(model);
 
@@ -68,6 +68,7 @@ namespace Estudiante_Api.Controllers
                     StatusCode = HttpStatusCode.Created,
                     Message = "Registro guardado  con éxito."
                 };
+                return Ok(result);
             }
             catch (DbUpdateException ex)
             {
@@ -90,13 +91,20 @@ namespace Estudiante_Api.Controllers
             {
                 if (modelDto == null || id == 0)
                     return BadRequest(new Resultado() { StatusCode = HttpStatusCode.BadRequest });
-                var model = _mapper.Map<GradoDto>(modelDto);
+                var model = _mapper.Map<Grados>(modelDto);
 
                 _context.Entry(model).State = EntityState.Modified;
 
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                var result = new Resultado()
+                {
+                    Success = true,
+                    StatusCode = HttpStatusCode.OK,
+                    Message = "Registro actualizado  con éxito."
+                };
+
+                return Ok(result);
             }
             catch (DbUpdateException ex)
             {
@@ -106,14 +114,7 @@ namespace Estudiante_Api.Controllers
             {
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
-            var result = new Resultado()
-            {
-                Success = true,
-                StatusCode = HttpStatusCode.OK,
-                Message = "Registro actualizado  con éxito."
-            };
-
-            return Ok(result);
+           
 
             return BadRequest();
 
