@@ -25,7 +25,9 @@ namespace Estudiante_Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var result = await _service.GetAllAsync();
+            var result = await _context.Estudiantes
+               .Include(x => x.Grado)
+               .ToListAsync();
 
             if (result != null)
             {

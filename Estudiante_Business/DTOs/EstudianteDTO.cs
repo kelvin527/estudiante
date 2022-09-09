@@ -17,5 +17,7 @@ namespace Estudiante_Business.Dtos
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public string Direccion { get; set; }
+        public int GradoId { get; set; }
+        public string Grado { get; set; }
     }
 }

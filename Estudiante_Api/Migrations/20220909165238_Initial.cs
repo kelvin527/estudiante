@@ -34,31 +34,6 @@ namespace Estudiante_Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Estudiantes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombres = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaNac = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Sexo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UsuarioRegistro = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsuarioModificacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FechaModificacion = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Estatus = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Estudiantes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Grados",
                 columns: table => new
                 {
@@ -113,6 +88,38 @@ namespace Estudiante_Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Estudiantes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombres = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Codigo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaNac = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    GradoId = table.Column<int>(type: "int", nullable: false),
+                    Sexo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UsuarioRegistro = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaRegistro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UsuarioModificacion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FechaModificacion = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Estatus = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Estudiantes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Estudiantes_Grados_GradoId",
+                        column: x => x.GradoId,
+                        principalTable: "Grados",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Calificaciones",
                 columns: table => new
                 {
@@ -121,7 +128,6 @@ namespace Estudiante_Api.Migrations
                     EstudianteId = table.Column<int>(type: "int", nullable: false),
                     MateriaId = table.Column<int>(type: "int", nullable: false),
                     DocenteId = table.Column<int>(type: "int", nullable: false),
-                    GradoId = table.Column<int>(type: "int", nullable: false),
                     PeriodoId = table.Column<int>(type: "int", nullable: false),
                     Nota = table.Column<int>(type: "int", nullable: false),
                     UsuarioRegistro = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -143,12 +149,6 @@ namespace Estudiante_Api.Migrations
                         name: "FK_Calificaciones_Estudiantes_EstudianteId",
                         column: x => x.EstudianteId,
                         principalTable: "Estudiantes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Calificaciones_Grados_GradoId",
-                        column: x => x.GradoId,
-                        principalTable: "Grados",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -176,11 +176,6 @@ namespace Estudiante_Api.Migrations
                 column: "EstudianteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Calificaciones_GradoId",
-                table: "Calificaciones",
-                column: "GradoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Calificaciones_MateriaId",
                 table: "Calificaciones",
                 column: "MateriaId");
@@ -189,6 +184,11 @@ namespace Estudiante_Api.Migrations
                 name: "IX_Calificaciones_PeriodoId",
                 table: "Calificaciones",
                 column: "PeriodoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Estudiantes_GradoId",
+                table: "Estudiantes",
+                column: "GradoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -203,13 +203,13 @@ namespace Estudiante_Api.Migrations
                 name: "Estudiantes");
 
             migrationBuilder.DropTable(
-                name: "Grados");
-
-            migrationBuilder.DropTable(
                 name: "Materias");
 
             migrationBuilder.DropTable(
                 name: "Periodos");
+
+            migrationBuilder.DropTable(
+                name: "Grados");
         }
     }
 }

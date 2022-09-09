@@ -52,10 +52,9 @@ namespace Estudiante_Api.Controllers
         {
             var result = await _context.Calificaciones
                 .Where(x => x.Id == estudianteId)
-                .Include(x => x.Estudiante)
+                .Include(x => x.Estudiante).ThenInclude(x=>x.Grado)
                 .Include(x => x.Docente)
                 .Include(x => x.Materia)
-                .Include(x => x.Grado)
                 .Include(x => x.Periodo)
                 .ToListAsync();
 

@@ -45,9 +45,6 @@ namespace Estudiante_Api.Migrations
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GradoId")
-                        .HasColumnType("int");
-
                     b.Property<int>("MateriaId")
                         .HasColumnType("int");
 
@@ -68,8 +65,6 @@ namespace Estudiante_Api.Migrations
                     b.HasIndex("DocenteId");
 
                     b.HasIndex("EstudianteId");
-
-                    b.HasIndex("GradoId");
 
                     b.HasIndex("MateriaId");
 
@@ -159,6 +154,9 @@ namespace Estudiante_Api.Migrations
                     b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("GradoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nombres")
                         .HasColumnType("nvarchar(max)");
 
@@ -175,6 +173,8 @@ namespace Estudiante_Api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("GradoId");
 
                     b.ToTable("Estudiantes");
                 });
@@ -286,12 +286,6 @@ namespace Estudiante_Api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Estudiante_Data.Entidades.Grados", "Grado")
-                        .WithMany()
-                        .HasForeignKey("GradoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Estudiante_Data.Entidades.Materias", "Materia")
                         .WithMany()
                         .HasForeignKey("MateriaId")
@@ -308,11 +302,20 @@ namespace Estudiante_Api.Migrations
 
                     b.Navigation("Estudiante");
 
-                    b.Navigation("Grado");
-
                     b.Navigation("Materia");
 
                     b.Navigation("Periodo");
+                });
+
+            modelBuilder.Entity("Estudiante_Data.Entidades.Estudiantes", b =>
+                {
+                    b.HasOne("Estudiante_Data.Entidades.Grados", "Grado")
+                        .WithMany()
+                        .HasForeignKey("GradoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Grado");
                 });
 #pragma warning restore 612, 618
         }

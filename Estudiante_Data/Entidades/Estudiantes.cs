@@ -10,14 +10,18 @@ namespace Estudiante_Data.Entidades
 {
     public class Estudiantes : BaseEntity
     {
+      
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string Codigo { get; set; }
         public DateTime FechaNac { get; set; }
+
+        public int GradoId { get; set; }
         public string Sexo { get; set; }
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public string Direccion { get; set; }
+        public Grados Grado { get; set; }
 
     }
 }

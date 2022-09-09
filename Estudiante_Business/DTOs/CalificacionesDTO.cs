@@ -14,11 +14,10 @@ namespace Estudiante_Business.Dtos
         public DocenteDto Docente { get; set; }
         public int MateriaId { get; set; }
         public int DocenteId { get; set; }
-        public int GradoId { get; set; }
         public int PeriodoId { get; set; }
         public int Nota { get; set; }
         public string Materia { get; set; }
-        public string Grado { get; set; }
+      
         public string Periodo { get; set; }
     }
 }
