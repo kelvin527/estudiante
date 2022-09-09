@@ -114,7 +114,7 @@ namespace Estudiante_Api.Controllers
             {
                 ModelState.AddModelError(String.Empty, ex2.ToString());
             }
-           
+            return BadRequest();
 
         }
 
