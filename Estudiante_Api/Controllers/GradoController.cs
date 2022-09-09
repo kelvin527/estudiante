@@ -115,7 +115,7 @@ namespace Estudiante_Api.Controllers
 
             return Ok(result);
 
-            return BadRequest();
+            
 
         }
 
