@@ -20,6 +20,13 @@ namespace Estudiante_Business.Mapper
             CreateMap<Materias, MateriaDto>().ReverseMap();
             CreateMap<Periodos, PeriodoDto>().ReverseMap();
             CreateMap<Calificaciones, CalificacionesDto>().ReverseMap();
+            CreateMap<Calificaciones, CalificacionesDto>()
+             .ForMember(x => x.EstudianteId, o => o.MapFrom(p => p.Estudiante.Id))
+             .ForMember(x => x.Materia, o => o.MapFrom(p => p.Materia.Descripcion))
+             .ForMember(x => x.Periodo, o => o.MapFrom(p => p.Periodo.Descripcion))
+             .ForMember(x => x.Grado, o => o.MapFrom(p => p.Grado.Descripcion))
+             .ForMember(x => x.DocenteId, o => o.MapFrom(p => p.Docente.Id))
+            .ReverseMap();
 
 
 

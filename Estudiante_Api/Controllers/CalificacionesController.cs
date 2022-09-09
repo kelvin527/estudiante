@@ -59,7 +59,7 @@ namespace Estudiante_Api.Controllers
                 .Include(x => x.Periodo)
                 .ToListAsync();
 
-            var model = _mapper.Map<CalificacionesDto>(result);
+            var model = _mapper.Map<List<CalificacionesDto>>(result);
 
             return Ok(model);
 
