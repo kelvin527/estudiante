@@ -116,8 +116,6 @@ namespace Estudiante_Api.Controllers
             }
            
 
-            return BadRequest();
-
         }
 
         [HttpDelete("{id}")]
