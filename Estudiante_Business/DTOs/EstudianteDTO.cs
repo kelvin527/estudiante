@@ -11,6 +11,8 @@ namespace Estudiante_Business.Dtos
     {
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
+
+        public string NombresCompleto => $"{Nombres} {Apellidos}";
         public string Codigo { get; set; }
         public DateTime FechaNac { get; set; }
         public string Sexo { get; set; }

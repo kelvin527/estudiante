@@ -7,9 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-//builder.Services.AddDbContext<BaseContext>(option =>
-//    option.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
+
 builder.Services.AddDbContext<BaseContext>(opt =>
               opt.UseSqlServer(builder.Configuration.GetConnectionString("connection"),
               b => b.MigrationsAssembly("Estudiante_Api")));

@@ -4,6 +4,7 @@ using Estudiante_Business.Interface;
 using Estudiante_Business.Repository;
 using Estudiante_Data.Context;
 using Estudiante_Data.Entidades;
+using Estudiante_Data.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@ namespace Estudiante_Api.Controllers
             if (result != null)
             {
                 var model = _mapper.Map<List<CalificacionesDto>>(result);
+                
                 return Ok(model);
             }
 
@@ -51,14 +53,19 @@ namespace Estudiante_Api.Controllers
         public async Task<IActionResult> GetCalificacinesByEstudiante(int estudianteId)
         {
             var result = await _context.Calificaciones
-                .Where(x => x.Id == estudianteId)
+                .Where(x => x.EstudianteId == estudianteId)
                 .Include(x => x.Estudiante).ThenInclude(x=>x.Grado)
                 .Include(x => x.Docente)
                 .Include(x => x.Materia)
                 .Include(x => x.Periodo)
                 .ToListAsync();
 
-            var model = _mapper.Map<List<CalificacionesDto>>(result);
+            var modelresul = _mapper.Map<List<CalificacionesDto>>(result);
+
+            var model = _mapper.Map<CalificacionesResponseModel>(modelresul.FirstOrDefault());
+
+            model.Calificaciones = _mapper.Map<List<CalificacionesModel>>(modelresul);
+          
 
             return Ok(model);
 

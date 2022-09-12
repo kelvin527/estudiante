@@ -125,7 +125,9 @@ namespace Estudiante_Api.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Resultado>> Delete(int id)
         {
+           
             var model = await _service.GetByIdAsync(id);
+            
             if (model == null)
                 return NotFound();
             try

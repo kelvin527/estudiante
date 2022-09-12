@@ -13,13 +13,12 @@ namespace Estudiante_Data.Entidades
         public int EstudianteId { get; set; }
         public int MateriaId { get; set; }
         public int DocenteId { get; set; }
-       
+
         public int PeriodoId { get; set; }
         public int Nota { get; set; }
         public Estudiantes Estudiante { get; set; }
         public Materias Materia { get; set; }
         public Docentes Docente { get; set; }
-      
         public Periodos Periodo { get; set; }
 
     }

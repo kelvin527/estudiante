@@ -15,7 +15,6 @@ namespace Estudiante_Data.Entidades
         public string Apellidos { get; set; }
         public string Codigo { get; set; }
         public DateTime FechaNac { get; set; }
-
         public int GradoId { get; set; }
         public string Sexo { get; set; }
         public string Telefono { get; set; }
